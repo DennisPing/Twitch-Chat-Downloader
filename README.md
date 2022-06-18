@@ -1,5 +1,8 @@
-# Twitch-Chat-Downloader
+![Build](https://github.com/DennisPing/Twitch-Chat-Downloader/actions/workflows/go.yml/badge.svg)
 ![Coverage](https://img.shields.io/badge/Coverage-38.9%25-yellow)
+
+# Twitch-Chat-Downloader
+
 A multithreaded Twitch chat downloader written in Go
 
 ## Testing
