@@ -55,6 +55,11 @@ func TestBuildGetVideoReq(t *testing.T) {
 			err:   nil,
 		},
 		{
+			input: "twitch.tv/videos/1234567890?t=123",
+			exp:   "https://api.twitch.tv/helix/videos?id=1234567890",
+			err:   nil,
+		},
+		{
 			input: "12345abcde",
 			exp:   "",
 			err:   pkg.ErrInvalidVodUrl,
@@ -126,7 +131,6 @@ func TestIsTwitchVod(t *testing.T) {
 		{"twitch.tv/videos/1234567890", true},
 		{"twitch.tv/videos/1234567890/", true},
 		{"twitch.tv/videos/1234567890?t=123", true},
-		{"twitch.tv/videos/1234567890?t=123&", true},
 	}
 	bad_urls := []test{
 		{"https://www.twitch.com/videos/1234567890", false},
