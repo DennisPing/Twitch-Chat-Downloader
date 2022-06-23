@@ -6,8 +6,6 @@ import (
 	"path"
 	"regexp"
 	"strconv"
-
-	"github.com/DennisPing/Twitch-Chat-Downloader/pkg"
 )
 
 // Build the video api request given the user input.
@@ -22,12 +20,12 @@ func buildGetVideoReq(input string) (string, error) {
 			u, _ := url.Parse(input)
 			video_id, err := strconv.Atoi(path.Base(u.Path))
 			if err != nil {
-				return "", pkg.ErrInvalidVodUrl
+				return "", ErrInvalidVodUrl
 			}
 			req := fmt.Sprintf("https://api.twitch.tv/helix/videos?id=%d", video_id)
 			return req, nil
 		} else {
-			return "", pkg.ErrInvalidVodUrl
+			return "", ErrInvalidVodUrl
 		}
 	}
 }

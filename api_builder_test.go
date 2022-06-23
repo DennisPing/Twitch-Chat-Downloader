@@ -3,8 +3,6 @@ package main
 import (
 	"errors"
 	"testing"
-
-	"github.com/DennisPing/Twitch-Chat-Downloader/pkg"
 )
 
 func TestBuildGetVideoReq(t *testing.T) {
@@ -62,42 +60,42 @@ func TestBuildGetVideoReq(t *testing.T) {
 		{
 			input: "12345abcde",
 			exp:   "",
-			err:   pkg.ErrInvalidVodUrl,
+			err:   ErrInvalidVodUrl,
 		},
 		{
 			input: "https://www.twitch.tv/videos/12345abcde",
 			exp:   "",
-			err:   pkg.ErrInvalidVodUrl,
+			err:   ErrInvalidVodUrl,
 		},
 		{
 			input: "https://www.twitch.tv/videos/abcdejkgijk/",
 			exp:   "",
-			err:   pkg.ErrInvalidVodUrl,
+			err:   ErrInvalidVodUrl,
 		},
 		{
 			input: "https://www.twitch.tv/1234567890",
 			exp:   "",
-			err:   pkg.ErrInvalidVodUrl,
+			err:   ErrInvalidVodUrl,
 		},
 		{
 			input: "https://www.twitch.tv/videos",
 			exp:   "",
-			err:   pkg.ErrInvalidVodUrl,
+			err:   ErrInvalidVodUrl,
 		},
 		{
 			input: "https://www.twitch.com/videos/1234567890",
 			exp:   "",
-			err:   pkg.ErrInvalidVodUrl,
+			err:   ErrInvalidVodUrl,
 		},
 		{
 			input: "https://www.twitch.com/videos/1234567890/12345",
 			exp:   "",
-			err:   pkg.ErrInvalidVodUrl,
+			err:   ErrInvalidVodUrl,
 		},
 		{
 			input: "",
 			exp:   "",
-			err:   pkg.ErrInvalidVodUrl,
+			err:   ErrInvalidVodUrl,
 		},
 	}
 	for _, tc := range tests {
