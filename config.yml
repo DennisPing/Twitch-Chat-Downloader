@@ -1,2 +1,21 @@
-CLIENT_ID: dummyId
-API_TOKEN: dummyToken
+client_id: dummyId
+api_token: dummyToken
+format:
+  comments:
+    badges:
+        admin: "!"
+        bits: "$"
+        broadcaster: "~"
+        global_mod: "*"
+        moderator: "@"
+        premium: "+"
+        staff: "&"
+        subscriber: "%"
+        turbo: "+"
+    format: "[{timestamp[relative]}] <{commenter[badge]}{commenter[display_name]}> {message[body]}"
+    timestamp:
+      relative: "%X"
+  filename:
+    format: "{id}.txt"
+    timestamp:
+      absolute: "%x"

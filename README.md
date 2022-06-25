@@ -5,6 +5,8 @@
 
 A multithreaded Twitch chat downloader written in Go
 
+Inspired by: https://github.com/PetterKraabol/Twitch-Chat-Downloader
+
 ## Testing
 
 Standard mode
