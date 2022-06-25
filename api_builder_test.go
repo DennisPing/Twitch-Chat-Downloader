@@ -3,6 +3,8 @@ package main
 import (
 	"errors"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestBuildGetVideoReq(t *testing.T) {
@@ -102,10 +104,10 @@ func TestBuildGetVideoReq(t *testing.T) {
 		t.Run(tc.input, func(t *testing.T) {
 			got, err := buildGetVideoReq(tc.input)
 			if err != nil && !errors.Is(err, tc.err) {
-				t.Fatalf("got %v, exp %v", err, tc.err)
+				t.Errorf("got %v, exp %v", err, tc.err)
 			}
 			if got != tc.exp {
-				t.Fatalf("got: %v, exp: %v", got, tc.exp)
+				t.Errorf("got: %v, exp: %v", got, tc.exp)
 			}
 		})
 	}
@@ -148,14 +150,10 @@ func TestIsTwitchVod(t *testing.T) {
 		{"https://www.twitch.tv/1234567890", false},
 	}
 	for _, tc := range good_urls {
-		if got := isTwitchVod(tc.input); got != tc.exp {
-			t.Errorf("%s: got: %t, exp: %t", tc.input, got, tc.exp)
-		}
+		assert.True(t, isTwitchVod(tc.input))
 	}
 	for _, tc := range bad_urls {
-		if got := isTwitchVod(tc.input); got != tc.exp {
-			t.Errorf("%s: got: %t, exp[%t", tc.input, got, tc.exp)
-		}
+		assert.False(t, isTwitchVod(tc.input))
 	}
 
 }

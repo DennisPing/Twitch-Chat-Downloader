@@ -50,10 +50,10 @@ func parseArgs() string {
 // Check for the config.yml file and create one if not exists.
 func loadConfig() {
 	if config_dir, err := os.UserConfigDir(); err == nil {
-		// On Windows: %APPDATA%/tcd-go/settings.yml
-		// On Linux: $XDG_CONFIG_HOME/.config/tcd-go/settings.yml
-		// On Mac: $HOME/Library/Application Support/tcd-go/settings.yml
-		config_path := filepath.Join(config_dir, "settings.yml")
+		// On Windows: %APPDATA%/tcd-go/config.yml
+		// On Linux: $XDG_CONFIG_HOME/.config/tcd-go/config.yml
+		// On Mac: $HOME/Library/Application Support/tcd-go/config.yml
+		config_path := filepath.Join(config_dir, "config.yml")
 		if _, err := os.Stat(config_path); err != nil {
 			err := createConfig(config_dir)
 			if err != nil {
@@ -80,13 +80,13 @@ func configToEnv(config_path string) error {
 	return nil
 }
 
-// Create the settings.yaml config file.
+// Create the config.yaml config file.
 func createConfig(config_dir string) error {
 	err := os.MkdirAll(config_dir, 0755)
 	if err != nil {
 		return err
 	}
-	config_path := filepath.Join(config_dir, "settings.yml")
+	config_path := filepath.Join(config_dir, "config.yml")
 	f, err := os.Create(config_path)
 	if err != nil {
 		return err

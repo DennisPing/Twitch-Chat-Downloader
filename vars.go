@@ -7,3 +7,4 @@ var Channel string
 var Video_id string
 
 var ErrInvalidVodUrl = errors.New("invalid vod url")
+var ErrInvalidConfig = errors.New("invalid config")
