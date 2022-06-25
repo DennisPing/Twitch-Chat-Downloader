@@ -39,7 +39,7 @@ type Config struct {
 }
 
 // Parse the config.yml file and return a Config struct.
-func ParseConfig(file string) (*Config, error) {
+func parseConfig(file string) (*Config, error) {
 	content, err := os.ReadFile(file)
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func ParseConfig(file string) (*Config, error) {
 }
 
 // Check for the config.yml file and create one if not exists.
-func LoadConfig() {
+func LoadConfig() error {
 	if config_dir, err := os.UserConfigDir(); err == nil {
 		// On Windows: %APPDATA%/tcd-go/config.yml
 		// On Linux: $XDG_CONFIG_HOME/.config/tcd-go/config.yml
@@ -65,26 +65,24 @@ func LoadConfig() {
 			fmt.Printf("Creating config at: %s\n", config_path)
 			err := createConfig(app_dir)
 			if err != nil {
-				fmt.Printf("unable to create config dir: %v\n", err)
-				os.Exit(1)
+				return err
 			}
 		}
-		err := configToEnv(config_path)
+		config, err := parseConfig(config_path)
 		if err != nil {
-			fmt.Printf("unable to load config file: %v\n", err)
-			os.Exit(1)
+			return err
 		}
-	}
-}
-
-// Load the config file into env variables.
-func configToEnv(config_path string) error {
-	f, err := os.Open(config_path)
-	if err != nil {
+		// Set environment variables
+		if err := os.Setenv("TCD_CLIENT_ID", config.ClientId); err != nil {
+			return err
+		}
+		if err := os.Setenv("TCD_API_TOKEN", config.ApiToken); err != nil {
+			return err
+		}
+		fmt.Println("Successfully loaded config")
+	} else {
 		return err
 	}
-	defer f.Close()
-	// TODO: parse the config file
 	return nil
 }
 
