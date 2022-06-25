@@ -1,5 +1,5 @@
 ![Build](https://github.com/DennisPing/Twitch-Chat-Downloader/actions/workflows/go.yml/badge.svg)
-![Coverage](https://img.shields.io/badge/Coverage-29.2%25-red)
+![Coverage](https://img.shields.io/badge/Coverage-23.2%25-red)
 
 # Twitch-Chat-Downloader
 
